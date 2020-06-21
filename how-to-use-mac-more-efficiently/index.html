@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/avatar.jpg">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/avatar.jpg">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/avatar.jpg">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"blog.jubeat.net","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="工欲善其事，必先利其器。——《论语·卫灵公》  近几年Mac在国内越来越普及，在程序员和设计人员中更是被热捧。那么作为一个Mac Programmer，要如何优雅的使用Mac呢？">
+<meta property="og:type" content="article">
+<meta property="og:title" content="程序员如何优雅的使用Mac">
+<meta property="og:url" content="https://blog.jubeat.net/how-to-use-mac-more-efficiently/index.html">
+<meta property="og:site_name" content="PM Extra&#39;s Blog">
+<meta property="og:description" content="工欲善其事，必先利其器。——《论语·卫灵公》  近几年Mac在国内越来越普及，在程序员和设计人员中更是被热捧。那么作为一个Mac Programmer，要如何优雅的使用Mac呢？">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://manytricks.com/moom/images/showcase/-08.jpg">
+<meta property="og:image" content="https://bjango.com/images/mac/istatmenus5/header-network.jpg">
+<meta property="og:image" content="https://blog.jubeat.net/how-to-use-mac-more-efficiently/zsh.png">
+<meta property="og:image" content="https://blog.jubeat.net/how-to-use-mac-more-efficiently/iterm-colors.png">
+<meta property="og:image" content="https://blog.jubeat.net/how-to-use-mac-more-efficiently/go2shell.png">
+<meta property="og:image" content="https://blog.jubeat.net/how-to-use-mac-more-efficiently/sourcetree.png">
+<meta property="og:image" content="https://blog.jubeat.net/how-to-use-mac-more-efficiently/dash.png">
+<meta property="og:image" content="https://blog.jubeat.net/how-to-use-mac-more-efficiently/alfred.png">
+<meta property="og:image" content="https://blog.jubeat.net/how-to-use-mac-more-efficiently/beyond_compare.png">
+<meta property="og:image" content="https://blog.jubeat.net/how-to-use-mac-more-efficiently/alcatraz.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/emaloney/CleanroomLogger/7cfc586cd348e6eb84a51d708a710d7f7aefd842/Documentation/Images/XcodeColors-code-example.png">
+<meta property="article:published_time" content="2016-05-01T07:10:26.000Z">
+<meta property="article:modified_time" content="2016-12-05T13:57:45.000Z">
+<meta property="article:author" content="PM Extra">
+<meta property="article:tag" content="Mac">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://manytricks.com/moom/images/showcase/-08.jpg">
+
+<link rel="canonical" href="https://blog.jubeat.net/how-to-use-mac-more-efficiently/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+
+
+  <title>程序员如何优雅的使用Mac | PM Extra's Blog</title>
+  
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?243dcd0c69db776189a1d1b3be85b480";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">PM Extra's Blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">PM的博客</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://blog.jubeat.net/how-to-use-mac-more-efficiently/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="PM Extra">
+      <meta itemprop="description" content="我叫PM，一只任性偏执的码农">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="PM Extra's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          程序员如何优雅的使用Mac
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2016-05-01 15:10:26" itemprop="dateCreated datePublished" datetime="2016-05-01T15:10:26+08:00">2016-05-01</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2016-12-05 21:57:45" itemprop="dateModified" datetime="2016-12-05T21:57:45+08:00">2016-12-05</time>
+              </span>
+
+          
+            <span id="/how-to-use-mac-more-efficiently/" class="post-meta-item leancloud_visitors" data-flag-title="程序员如何优雅的使用Mac" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/how-to-use-mac-more-efficiently/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/how-to-use-mac-more-efficiently/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <blockquote>
+<p>工欲善其事，必先利其器。——《论语·卫灵公》</p>
+</blockquote>
+<p>近几年Mac在国内越来越普及，在程序员和设计人员中更是被热捧。那么作为一个Mac Programmer，要如何优雅的使用Mac呢？</p>
+<a id="more"></a>
+
+<h2 id="日常使用篇"><a href="#日常使用篇" class="headerlink" title="日常使用篇"></a>日常使用篇</h2><h3 id="Moom"><a href="#Moom" class="headerlink" title="Moom"></a>Moom</h3><blockquote>
+<p>Moom官网：<a href="https://manytricks.com/moom" target="_blank" rel="noopener">https://manytricks.com/moom</a><br>低调的下载地址：<a href="http://xclient.info/s/moom.html" target="_blank" rel="noopener">http://xclient.info/s/moom.html</a></p>
+</blockquote>
+<p><img src="https://manytricks.com/moom/images/showcase/-08.jpg" alt="Moom左右分屏"></p>
+<p>为了方便多窗口的布局，微软在Win7系统中加入了拖动窗口到屏幕边缘以最大化和分屏的功能。然而macOS因为对窗口的设计理念不同，并没有像Windows那样便捷的最大化和分屏功能。因此，Moom诞生了，Moom可以很方便的帮我们设置窗口的尺寸和位置，提升我们在多窗口协同工作时的效率。</p>
+<p>Moom是一款收费软件，官方售价&dollar;9.99美元。</p>
+<h3 id="iStat-Menus"><a href="#iStat-Menus" class="headerlink" title="iStat Menus"></a>iStat Menus</h3><blockquote>
+<p>iStat Menus官网：<a href="https://bjango.com/mac/istatmenus" target="_blank" rel="noopener">https://bjango.com/mac/istatmenus</a><br>低调的下载地址：<a href="http://xclient.info/s/istat-menus-for-mac.html" target="_blank" rel="noopener">http://xclient.info/s/istat-menus-for-mac.html</a></p>
+</blockquote>
+<p><img src="https://bjango.com/images/mac/istatmenus5/header-network.jpg" alt="iStat Menus网络监测"></p>
+<p>iStat Menus是一个可以在菜单栏中显示系统状态的工具，例如CPU、内存使用率，实时网络占用监测，温度和风扇转速监测等。</p>
+<p>iStat Menus提供了大量的自定义选项和皮肤，可以根据自己的喜好进行设置。这是一款收费软件，单用户售价&dollar;18美元。</p>
+<h3 id="BetterZip"><a href="#BetterZip" class="headerlink" title="BetterZip"></a>BetterZip</h3><blockquote>
+<p>BetterZip官网：<a href="https://macitbetter.com" target="_blank" rel="noopener">https://macitbetter.com</a><br>低调的下载地址：<a href="http://xclient.info/s/better-zip.html" target="_blank" rel="noopener">http://xclient.info/s/better-zip.html</a></p>
+</blockquote>
+<p>BetterZip是一款功能强大的压缩软件，不必解压就能快速地检查压缩文档，类似Windows下的WinRAR。</p>
+<p>它支持包括zip、gz、bz、bz2、tar、tgz、tbz、rar、7-zip、cpio、 arj、lha、lhz、cab、iso、chm、rpm、deb、nsis、sit、dd、hqx和bin等多种格式的文件。并且支持Windows下的编码修正（Mac默认的压缩功能创建的文件在Windows下打开可能会出现乱码）。</p>
+<p>BetterZip是一款共享软件，免费版也可以永久使用，官方正版售价&dollar;9.99美元。</p>
+<h2 id="Shell应用篇"><a href="#Shell应用篇" class="headerlink" title="Shell应用篇"></a>Shell应用篇</h2><h3 id="Homebrew"><a href="#Homebrew" class="headerlink" title="Homebrew"></a>Homebrew</h3><blockquote>
+<p>Homebrew官网：<a href="http://brew.sh" target="_blank" rel="noopener">http://brew.sh</a></p>
+</blockquote>
+<p>Homebrew是Mac上的一个程序包管理软件，类似Linux的apt-get或者yum。通过Homebrew，我们可以很方便的对Mac上的软件和各种代码库进行安装、升级、卸载等管理，其便捷性相比Linux有过之而无不及。</p>
+<p>Homebrew的安装和使用都比较简单，官网首页都有讲解，这里不再赘述。</p>
+<h3 id="zsh-oh-my-zsh"><a href="#zsh-oh-my-zsh" class="headerlink" title="zsh (oh-my-zsh)"></a>zsh (oh-my-zsh)</h3><blockquote>
+<p>zsh官网：<a href="http://zsh.sourceforge.net" target="_blank" rel="noopener">http://zsh.sourceforge.net</a></p>
+<p>oh-my-zsh官网：<a href="http://ohmyz.sh" target="_blank" rel="noopener">http://ohmyz.sh</a></p>
+</blockquote>
+<p>zsh，全称Z Shell。是Unix/Linux平台的一个控制台Shell。比系统自带的sh、Bash等更加强大，支持一些富文本特性，支持Git集成，还有丰富的第三方插件。</p>
+<p>zsh吸引我的几大特色有：</p>
+<ul>
+<li>支持各种皮肤主题，让shell更美观高效</li>
+<li>命令补全时不需要区分大小写，会自动适配</li>
+<li>使用tab选择文件时可以显示文件列表，继续按下tab即可在文件列表中切换</li>
+<li>支持git集成，一眼看到当前git仓库的分支和状态</li>
+<li>丰富的第三方扩展插件</li>
+</ul>
+<img src="/how-to-use-mac-more-efficiently/zsh.png" class="" title="zsh (iTerm2承载，使用agnoster主题)">
+
+<h4 id="zsh的安装与配置"><a href="#zsh的安装与配置" class="headerlink" title="zsh的安装与配置"></a>zsh的安装与配置</h4><p>尽管Mac系统自带了zsh，但版本非常老旧，我们可以通过Homebrew更新到最新版本的zsh。只需要在终端中执行<code>brew install zsh</code>，等待完成就行了。</p>
+<p>默认情况下，macOS的默认shell是sh，如果想要将zsh设为默认，可以在终端中执行<code>chsh -s /bin/zsh</code>，再次启动终端就默认使用zsh了。</p>
+<p>zsh的安装还是比较容易的，比较复杂的是zsh的配置。因为zsh过于强大，各项配置非常复杂。这时候就需要oh-my-zsh登场了。</p>
+<p>oh-my-zsh是一个相当于“zsh懒人包”的配置和插件集合，根据oh-my-zsh官网的说明，进行安装即可，oh-my-zsh的默认配置已经能够满足我们的日常使用。</p>
+<h4 id="更换主题"><a href="#更换主题" class="headerlink" title="更换主题"></a>更换主题</h4><p>安装好oh-my-zsh之后，默认启用的是一个比较简洁的主题（robbyrussell），更多的主题可以在<a href="https://github.com/robbyrussell/oh-my-zsh/wiki/Themes" target="_blank" rel="noopener">官方Github</a>上查看。</p>
+<p>我偏爱于使用<a href="https://github.com/robbyrussell/oh-my-zsh/wiki/Themes#agnoster" target="_blank" rel="noopener">agnoster</a>主题，不过这款主题的配置相对复杂一些，首先需要用到<a href="https://github.com/powerline/fonts" target="_blank" rel="noopener">powerline字体</a>，然后配色也需要调整，使用第三方终端模拟器才能达到最佳效果，例如接下来要讲的iTerm。</p>
+<h3 id="iTerm2"><a href="#iTerm2" class="headerlink" title="iTerm2"></a>iTerm2</h3><blockquote>
+<p>iTerm2官网：<a href="http://www.iterm2.com" target="_blank" rel="noopener">http://www.iterm2.com</a></p>
+</blockquote>
+<p>iTerm2是一个终端模拟器，它和macOS自带的终端一样，用来承载和显示shell。区别在于，iTerm提供了很多增强功能，例如对多标签管理会话，保存会话状态，支持终端中的图片和链接，提供更加丰富的配色方案等等。</p>
+<h4 id="Solarized-Dark配色方案"><a href="#Solarized-Dark配色方案" class="headerlink" title="Solarized Dark配色方案"></a>Solarized Dark配色方案</h4><p><a href="http://ethanschoonover.com/solarized" target="_blank" rel="noopener">Solarized Dark</a>是一个广受欢迎的配色方案，我们在很多软件中都可以看到他的身影。</p>
+<p>我的Xcode和iTerm2都选用了这款配色。这也是oh-my-zsh官方推荐与agnoster主题搭配的方案。</p>
+<p>从官网下载Solarized压缩包，解压后找到iTerm2目录中的<code>Solarized Dark.itermcolors</code>配色文件。</p>
+<p>然后打开iTerm设置，导入并启用配色方案即可。</p>
+<img src="/how-to-use-mac-more-efficiently/iterm-colors.png" class="" title="iTerm2导入配色方案">
+
+<h3 id="Go2Shell"><a href="#Go2Shell" class="headerlink" title="Go2Shell"></a>Go2Shell</h3><blockquote>
+<p>Go2Shell官网：<a href="http://zipzapmac.com/Go2Shell" target="_blank" rel="noopener">http://zipzapmac.com/Go2Shell</a></p>
+</blockquote>
+<p>Go2Shell可以让我们便捷的从Finder中打开终端并定位到当前目录。</p>
+<p>安装后启动Go2Shell，点击最下面的_Install to Finder_就可以安装Go2Shell到Finder的工具栏了。</p>
+<p>之后只要在Finder中点击工具栏中的Go2Shell图标即可打开终端。</p>
+<p>值得一提的是，Go2Shell可以和iTerm2一起使用，只要在Go2Shell设置中稍作修改即可。</p>
+<img src="/how-to-use-mac-more-efficiently/go2shell.png" class="" title="配置Go2Shell">
+
+<h2 id="Developer篇"><a href="#Developer篇" class="headerlink" title="Developer篇"></a>Developer篇</h2><h3 id="SourceTree"><a href="#SourceTree" class="headerlink" title="SourceTree"></a>SourceTree</h3><blockquote>
+<p>SourceTree官网：<a href="https://www.sourcetreeapp.com" target="_blank" rel="noopener">https://www.sourcetreeapp.com</a></p>
+</blockquote>
+<p>SourceTree是一款图形化Git工具，由著名的Atlassian公司开发，和Bitbucket是孪生兄弟。</p>
+<img src="/how-to-use-mac-more-efficiently/sourcetree.png" class="" title="SourceTree截图">
+
+<p>Atlassian偶尔被墙，如果无法访问请科学上网。</p>
+<h3 id="Dash"><a href="#Dash" class="headerlink" title="Dash"></a>Dash</h3><blockquote>
+<p>Dash官网：<a href="https://kapeli.com/dash" target="_blank" rel="noopener">https://kapeli.com/dash</a><br>低调的下载地址：<a href="http://xclient.info/s/dash.html" target="_blank" rel="noopener">http://xclient.info/s/dash.html</a></p>
+</blockquote>
+<p>Dash是一本程序员的字典，他整合了数百项语言和开源项目的官方文档，可以统一高效地查询文档，还支持在文档中加入书签和自己的注解。</p>
+<img src="/how-to-use-mac-more-efficiently/dash.png" class="" title="Dash查询C语言文档">
+
+<p>Dash是一款收费软件，官方售价$24.99美元。</p>
+<h3 id="Alfred"><a href="#Alfred" class="headerlink" title="Alfred"></a>Alfred</h3><blockquote>
+<p>Alfred官网：<a href="https://www.alfredapp.com" target="_blank" rel="noopener">https://www.alfredapp.com</a><br>低调的下载地址：<a href="http://xclient.info/s/alfred.html" target="_blank" rel="noopener">http://xclient.info/s/alfred.html</a></p>
+</blockquote>
+<p>Alfred是一个增强版的Spotlight，不仅可以检索文件，而且提供了开放接口，有丰富的第三方插件。</p>
+<p>例如安装Dash插件就可以和Dash高度整合，一键搜索各种开发文档。</p>
+<img src="/how-to-use-mac-more-efficiently/alfred.png" class="" title="通过Alfred搜索Dash">
+
+<p>Alfred是一款共享软件，基础功能免费，完整版售价单用户&pound;17英镑，需购买完整版才能安装插件。</p>
+<h4 id="NSC-Number-System-Converter"><a href="#NSC-Number-System-Converter" class="headerlink" title="NSC - Number System Converter"></a>NSC - Number System Converter</h4><p>NSC是一款非常实用的Alfred插件，提供各种进制转换的功能，对程序员来说非常便捷。</p>
+<p>NSC官方地址：<a href="http://www.alfredforum.com/topic/1975-nsc-number-system-converter" target="_blank" rel="noopener">http://www.alfredforum.com/topic/1975-nsc-number-system-converter</a></p>
+<h3 id="Beyond-Compare"><a href="#Beyond-Compare" class="headerlink" title="Beyond Compare"></a>Beyond Compare</h3><blockquote>
+<p>Beyond Compare官网：<a href="http://www.scootersoftware.com" target="_blank" rel="noopener">http://www.scootersoftware.com</a><br>低调的下载地址：<a href="http://xclient.info/s/beyond-compare.html" target="_blank" rel="noopener">http://xclient.info/s/beyond-compare.html</a></p>
+</blockquote>
+<p>Beyond Compare是一款功能强大的比较、合并工具，无论是日常对比文件、目录，或是用于解决Git冲突，都提供了非常强大的功能，是程序员必备的神兵利器。</p>
+<img src="/how-to-use-mac-more-efficiently/beyond_compare.png" class="" title="Beyond Compare 比较文件">
+
+<p>Beyond Compare是一款收费软件，官方售价标准版&dollar;30美元。</p>
+<h2 id="Xcode插件篇"><a href="#Xcode插件篇" class="headerlink" title="Xcode插件篇"></a>Xcode插件篇</h2><p>2016年10月更新：在最新的Xcode 8中，苹果对Xcode library启用了验证机制，所有第三方插件都无法注入到Xcode进程中了。因此以下插件只针对Xcode 7有效。关于多个Xcode版本共存和切换的方法请参考<a href="/how-to-install-multi-xcode/" title="《如何在mac中安装多个版本的Xcode》">《如何在mac中安装多个版本的Xcode》</a>。</p>
+<h3 id="Alcatraz"><a href="#Alcatraz" class="headerlink" title="Alcatraz"></a>Alcatraz</h3><blockquote>
+<p>Alcatraz官网：<a href="http://alcatraz.io" target="_blank" rel="noopener">http://alcatraz.io</a></p>
+</blockquote>
+<p>Alcatraz是一款Xcode插件，可以用来管理其它的Xcode插件、模版以及颜色配置。</p>
+<img src="/how-to-use-mac-more-efficiently/alcatraz.png" class="" title="Alcatraz界面截图">
+
+<h3 id="AdjustFontSize"><a href="#AdjustFontSize" class="headerlink" title="AdjustFontSize"></a>AdjustFontSize</h3><p>这是一个可以快捷调节Xcode代码字体大小的插件，默认快捷键是<code>Control =</code>和<code>Control -</code>。此插件可以通过Alcatraz安装。</p>
+<h3 id="FuzzyAutocomplete"><a href="#FuzzyAutocomplete" class="headerlink" title="FuzzyAutocomplete"></a>FuzzyAutocomplete</h3><p>这是一个增强自动补全的插件，可以使代码补全模糊搜索。此插件可以通过Alcatraz安装。</p>
+<h3 id="OMColorSense"><a href="#OMColorSense" class="headerlink" title="OMColorSense"></a>OMColorSense</h3><p>这是一个增强Xcode代码中颜色设定的插件，当你设置UIColor时会出现一个小色块可以预览当前设置的颜色。此插件可以通过Alcatraz安装。</p>
+<h3 id="KSImageNamed"><a href="#KSImageNamed" class="headerlink" title="KSImageNamed"></a>KSImageNamed</h3><p>这是一个增强UIImage.imageNamed函数的插件，当你试图调用一个内部资源来创建UIImage时，它可以自动替你补全当前项目中包含的资源文件名称，并且显示缩略图预览。</p>
+<h3 id="SCXcodeMinimap"><a href="#SCXcodeMinimap" class="headerlink" title="SCXcodeMinimap"></a>SCXcodeMinimap</h3><p>这是一个让Xcode滚动条类似Sublime一样产生代码缩略图效果的插件，这个插件貌似对Xcode性能会有一定影响，容易造成轻微卡顿。此插件可以通过Alcatraz安装。</p>
+<h3 id="VVDocumenter"><a href="#VVDocumenter" class="headerlink" title="VVDocumenter"></a>VVDocumenter</h3><p>这是一个让Xcode生成Javadoc风格注释的插件，只要在代码中连续输入<code>///</code>就会自动产生格式化注释文档。此插件可以通过Alcatraz安装。</p>
+<h3 id="BBUncrustifyPlugin"><a href="#BBUncrustifyPlugin" class="headerlink" title="BBUncrustifyPlugin"></a>BBUncrustifyPlugin</h3><p>这是一个让Xcode与Uncrustify集成的插件，Uncrustify可以帮助我们格式化C/C++/OC代码。</p>
+<p>使用此插件需要先安装Uncrustify，可以通过Homebrew进行安装。然后再通过Alcatraz安装此插件，即可在Xcode中调用Uncrustify。</p>
+<p>Uncrustify有大量的设置选项，建议参考<a href="https://github.com/markeissler/wonderful-objective-c-style-guide" target="_blank" rel="noopener">Wonderful Objective-C style guide</a>进行设置，在这里分享一下<a href="/how-to-use-mac-more-efficiently/uncrustify.cfg" title="我修改的设置方案">我修改的设置方案</a>。下载后改名<code>.uncrustify.cfg</code>放到<code>~/</code>目录即可。</p>
+<h3 id="Swimat"><a href="#Swimat" class="headerlink" title="Swimat"></a>Swimat</h3><p>相比于C/C++/OC，Swift的代码格式化就相对简单了，直接通过Alcatraz安装Swimat插件即可。默认格式化快捷键<code>Command Option Shift L</code>。</p>
+<h3 id="XcodeColors"><a href="#XcodeColors" class="headerlink" title="XcodeColors"></a>XcodeColors</h3><p>XcodeColors插件可以给Xcode内的输入输出窗口加入颜色支持，配合XCGLogger就可以实现带有颜色的日志输出。此插件可通过Alcatraz安装。</p>
+<p><img src="https://raw.githubusercontent.com/emaloney/CleanroomLogger/7cfc586cd348e6eb84a51d708a710d7f7aefd842/Documentation/Images/XcodeColors-code-example.png" alt="XcodeColors演示"></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Mac/" rel="tag"># Mac</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/first-blog/" rel="prev" title="我的第一篇博客">
+      <i class="fa fa-chevron-left"></i> 我的第一篇博客
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/how-to-use-windows-more-efficiently/" rel="next" title="如何高效地使用Windows">
+      如何高效地使用Windows <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#日常使用篇"><span class="nav-number">1.</span> <span class="nav-text">日常使用篇</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Moom"><span class="nav-number">1.1.</span> <span class="nav-text">Moom</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#iStat-Menus"><span class="nav-number">1.2.</span> <span class="nav-text">iStat Menus</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#BetterZip"><span class="nav-number">1.3.</span> <span class="nav-text">BetterZip</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Shell应用篇"><span class="nav-number">2.</span> <span class="nav-text">Shell应用篇</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Homebrew"><span class="nav-number">2.1.</span> <span class="nav-text">Homebrew</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#zsh-oh-my-zsh"><span class="nav-number">2.2.</span> <span class="nav-text">zsh (oh-my-zsh)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#zsh的安装与配置"><span class="nav-number">2.2.1.</span> <span class="nav-text">zsh的安装与配置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#更换主题"><span class="nav-number">2.2.2.</span> <span class="nav-text">更换主题</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#iTerm2"><span class="nav-number">2.3.</span> <span class="nav-text">iTerm2</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Solarized-Dark配色方案"><span class="nav-number">2.3.1.</span> <span class="nav-text">Solarized Dark配色方案</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Go2Shell"><span class="nav-number">2.4.</span> <span class="nav-text">Go2Shell</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Developer篇"><span class="nav-number">3.</span> <span class="nav-text">Developer篇</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#SourceTree"><span class="nav-number">3.1.</span> <span class="nav-text">SourceTree</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Dash"><span class="nav-number">3.2.</span> <span class="nav-text">Dash</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Alfred"><span class="nav-number">3.3.</span> <span class="nav-text">Alfred</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#NSC-Number-System-Converter"><span class="nav-number">3.3.1.</span> <span class="nav-text">NSC - Number System Converter</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Beyond-Compare"><span class="nav-number">3.4.</span> <span class="nav-text">Beyond Compare</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Xcode插件篇"><span class="nav-number">4.</span> <span class="nav-text">Xcode插件篇</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Alcatraz"><span class="nav-number">4.1.</span> <span class="nav-text">Alcatraz</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#AdjustFontSize"><span class="nav-number">4.2.</span> <span class="nav-text">AdjustFontSize</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#FuzzyAutocomplete"><span class="nav-number">4.3.</span> <span class="nav-text">FuzzyAutocomplete</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#OMColorSense"><span class="nav-number">4.4.</span> <span class="nav-text">OMColorSense</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#KSImageNamed"><span class="nav-number">4.5.</span> <span class="nav-text">KSImageNamed</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SCXcodeMinimap"><span class="nav-number">4.6.</span> <span class="nav-text">SCXcodeMinimap</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#VVDocumenter"><span class="nav-number">4.7.</span> <span class="nav-text">VVDocumenter</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#BBUncrustifyPlugin"><span class="nav-number">4.8.</span> <span class="nav-text">BBUncrustifyPlugin</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Swimat"><span class="nav-number">4.9.</span> <span class="nav-text">Swimat</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#XcodeColors"><span class="nav-number">4.10.</span> <span class="nav-text">XcodeColors</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="PM Extra"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">PM Extra</p>
+  <div class="site-description" itemprop="description">我叫PM，一只任性偏执的码农</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">7</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/PMExtra" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;PMExtra" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:pm@jubeat.net" title="E-Mail → mailto:pm@jubeat.net" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://weibo.com/znxxs" title="Weibo → https:&#x2F;&#x2F;weibo.com&#x2F;znxxs" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i>Weibo</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://stackoverflow.com/users/6401252/pm-extra" title="StackOverflow → https:&#x2F;&#x2F;stackoverflow.com&#x2F;users&#x2F;6401252&#x2F;pm-extra" rel="noopener" target="_blank"><i class="fa fa-fw fa-stack-overflow"></i>StackOverflow</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2015 – 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">PM Extra</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://mist.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : false,
+      notify     : false,
+      appId      : 't7VffyblUE3JC10NmU1YrCar-MdYXbMMI',
+      appKey     : 'h6MgC8PAeeE9GxNTtHFnWSM9',
+      placeholder: "说点什么吧（留下昵称和邮箱，可收到回复提醒哦）",
+      avatar     : 'mm',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : true,
+      lang       : '' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : true,
+      serverURLs : ''
+    });
+  }, window.Valine);
+});
+</script>
+
+</body>
+</html>
