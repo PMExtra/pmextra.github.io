@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 4.2.1">
+<meta name="generator" content="Hexo 5.4.0">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/avatar.jpg">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/avatar.jpg">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/avatar.jpg">
@@ -13,7 +13,7 @@
 <link rel="stylesheet" href="/css/main.css">
 
 
-<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
@@ -33,6 +33,7 @@
 <meta property="article:tag" content="Mac">
 <meta property="article:tag" content="Xcode">
 <meta property="article:tag" content="iOS">
+<meta property="article:tag" content="开发">
 <meta name="twitter:card" content="summary">
 
 <link rel="canonical" href="https://blog.jubeat.net/how-to-install-multi-xcode/">
@@ -126,25 +127,25 @@
 
 
 <nav class="site-nav">
-  <ul id="menu" class="menu">
+  <ul id="menu" class="main-menu menu">
         <li class="menu-item menu-item-home">
 
-    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
-
-  </li>
-        <li class="menu-item menu-item-about">
-
-    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
-
-  </li>
-        <li class="menu-item menu-item-tags">
-
-    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+    <a href="/" rel="section"><i class="home fa-fw"></i>首页</a>
 
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+    <a href="/archives/" rel="section"><i class="archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="tags fa-fw"></i>标签</a>
 
   </li>
   </ul>
@@ -194,7 +195,7 @@
         <div class="post-meta">
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
+                <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
 
@@ -213,7 +214,7 @@
   <span class="post-meta-item">
     
       <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
+        <i class="far fa-comment"></i>
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
@@ -236,9 +237,9 @@
         <h1 id="为什么要安装多个版本"><a href="#为什么要安装多个版本" class="headerlink" title="为什么要安装多个版本"></a>为什么要安装多个版本</h1><p>想要体验最新的beta版Xcode，但又担心因为不稳定影响自己的日常工作。所以需要同时安装正式版和beta版。</p>
 <p>苹果最新的Xcode中一般只搭配最新的iOS SDK，需要开发测试低版本iOS应用时就可能需要使用低版本Xcode。</p>
 <p>最新的Xcode 8中，苹果开启了Library签名验证机制，导致所有第三方插件无法内嵌到Xcode中。所以为了保留以往便捷的插件使用习惯，我同时安装了Xcode 7和Xcode 8两个版本。</p>
-<a id="more"></a>
+<span id="more"></span>
 
-<h1 id="如何获取特定版本的Xcode"><a href="#如何获取特定版本的Xcode" class="headerlink" title="如何获取特定版本的Xcode"></a>如何获取特定版本的Xcode</h1><p>通常我们可以在App Store应用商店中免费下载Xcode的最新版本，但如果我们想要获取特定版本呢？苹果在开发者网站中提供了历史所有版本的系统和开发工具的下载，网址：<a href="https://developer.apple.com/download/more/" target="_blank" rel="noopener">https://developer.apple.com/download/more/</a></p>
+<h1 id="如何获取特定版本的Xcode"><a href="#如何获取特定版本的Xcode" class="headerlink" title="如何获取特定版本的Xcode"></a>如何获取特定版本的Xcode</h1><p>通常我们可以在App Store应用商店中免费下载Xcode的最新版本，但如果我们想要获取特定版本呢？苹果在开发者网站中提供了历史所有版本的系统和开发工具的下载，网址：<a target="_blank" rel="noopener" href="https://developer.apple.com/download/more/">https://developer.apple.com/download/more/</a></p>
 <h1 id="手动下载的Xcode如何安装"><a href="#手动下载的Xcode如何安装" class="headerlink" title="手动下载的Xcode如何安装"></a>手动下载的Xcode如何安装</h1><p>zip、xip文件直接双击解压，dmg文件双击加载磁盘映像。然后将Xcode应用拖放（移动或复制）到应用程序（/Applications）目录中即可，首次启动应用会自动提示输入管理员密码以完成安装和初始化。</p>
 <h1 id="如何让两个版本共存"><a href="#如何让两个版本共存" class="headerlink" title="如何让两个版本共存"></a>如何让两个版本共存</h1><p>直接给Xcode改名即可，可以一个版本保留原名，另一个版本加上版本号。也可以给多个版本都加上版本号，例如<code>Xcode7</code>和<code>Xcode8</code>。需要注意的是，如果你有使用第三方开发工具，请尽量避免在名称中出现空格。经测试在CLion 2016.2中，Xcode应用名称包含空格会导致不能调用llvm编译器。</p>
 <h1 id="如何切换默认版本"><a href="#如何切换默认版本" class="headerlink" title="如何切换默认版本"></a>如何切换默认版本</h1><p>如果要切换Finder中Xcode项目的默认打开方式，在任意项目（xcodeproj和xcworkspace）文件上打开简介，然后在打开方式中选择期望的版本，点击全部应用即可。</p>
@@ -257,6 +258,7 @@
               <a href="/tags/Mac/" rel="tag"># Mac</a>
               <a href="/tags/Xcode/" rel="tag"># Xcode</a>
               <a href="/tags/iOS/" rel="tag"># iOS</a>
+              <a href="/tags/%E5%BC%80%E5%8F%91/" rel="tag"># 开发</a>
           </div>
 
         
@@ -269,8 +271,8 @@
       <i class="fa fa-chevron-left"></i> .NET Core 开发准备
     </a></div>
       <div class="post-nav-item">
-    <a href="/restart-blog/" rel="next" title="重新启程">
-      重新启程 <i class="fa fa-chevron-right"></i>
+    <a href="/chinese-mirror-guide/" rel="next" title="中国镜像加速指南">
+      中国镜像加速指南 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -331,7 +333,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#为什么要安装多个版本"><span class="nav-number">1.</span> <span class="nav-text">为什么要安装多个版本</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#如何获取特定版本的Xcode"><span class="nav-number">2.</span> <span class="nav-text">如何获取特定版本的Xcode</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#手动下载的Xcode如何安装"><span class="nav-number">3.</span> <span class="nav-text">手动下载的Xcode如何安装</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#如何让两个版本共存"><span class="nav-number">4.</span> <span class="nav-text">如何让两个版本共存</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#如何切换默认版本"><span class="nav-number">5.</span> <span class="nav-text">如何切换默认版本</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#注意事项"><span class="nav-number">6.</span> <span class="nav-text">注意事项</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E5%AE%89%E8%A3%85%E5%A4%9A%E4%B8%AA%E7%89%88%E6%9C%AC"><span class="nav-number">1.</span> <span class="nav-text">为什么要安装多个版本</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E8%8E%B7%E5%8F%96%E7%89%B9%E5%AE%9A%E7%89%88%E6%9C%AC%E7%9A%84Xcode"><span class="nav-number">2.</span> <span class="nav-text">如何获取特定版本的Xcode</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%89%8B%E5%8A%A8%E4%B8%8B%E8%BD%BD%E7%9A%84Xcode%E5%A6%82%E4%BD%95%E5%AE%89%E8%A3%85"><span class="nav-number">3.</span> <span class="nav-text">手动下载的Xcode如何安装</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E8%AE%A9%E4%B8%A4%E4%B8%AA%E7%89%88%E6%9C%AC%E5%85%B1%E5%AD%98"><span class="nav-number">4.</span> <span class="nav-text">如何让两个版本共存</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E5%88%87%E6%8D%A2%E9%BB%98%E8%AE%A4%E7%89%88%E6%9C%AC"><span class="nav-number">5.</span> <span class="nav-text">如何切换默认版本</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9"><span class="nav-number">6.</span> <span class="nav-text">注意事项</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -354,23 +356,23 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-count">12</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
 </div>
   <div class="links-of-author motion-element">
       <span class="links-of-author-item">
-        <a href="https://github.com/PMExtra" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;PMExtra" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+        <a href="https://github.com/PMExtra" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;PMExtra" rel="noopener" target="_blank"><i class="github fa-fw"></i>GitHub</a>
       </span>
       <span class="links-of-author-item">
-        <a href="mailto:pm@jubeat.net" title="E-Mail → mailto:pm@jubeat.net" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+        <a href="mailto:pm@jubeat.net" title="E-Mail → mailto:pm@jubeat.net" rel="noopener" target="_blank"><i class="envelope fa-fw"></i>E-Mail</a>
       </span>
       <span class="links-of-author-item">
-        <a href="https://weibo.com/znxxs" title="Weibo → https:&#x2F;&#x2F;weibo.com&#x2F;znxxs" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i>Weibo</a>
+        <a href="https://weibo.com/znxxs" title="Weibo → https:&#x2F;&#x2F;weibo.com&#x2F;znxxs" rel="noopener" target="_blank"><i class="weibo fa-fw"></i>Weibo</a>
       </span>
       <span class="links-of-author-item">
-        <a href="https://stackoverflow.com/users/6401252/pm-extra" title="StackOverflow → https:&#x2F;&#x2F;stackoverflow.com&#x2F;users&#x2F;6401252&#x2F;pm-extra" rel="noopener" target="_blank"><i class="fa fa-fw fa-stack-overflow"></i>StackOverflow</a>
+        <a href="https://stackoverflow.com/users/6401252/pm-extra" title="StackOverflow → https:&#x2F;&#x2F;stackoverflow.com&#x2F;users&#x2F;6401252&#x2F;pm-extra" rel="noopener" target="_blank"><i class="stack-overflow fa-fw"></i>StackOverflow</a>
       </span>
   </div>
 
@@ -395,9 +397,9 @@
 <div class="copyright">
   
   &copy; 2015 – 
-  <span itemprop="copyrightYear">2020</span>
+  <span itemprop="copyrightYear">2021</span>
   <span class="with-love">
-    <i class="fa fa-user"></i>
+    <i class="fa fa-heart"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">PM Extra</span>
 </div>

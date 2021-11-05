@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/avatar.jpg">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/avatar.jpg">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/avatar.jpg">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"blog.jubeat.net","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="本文旨在分享中国网络环境下，开发运维的镜像加速最佳实践。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="中国镜像加速指南">
+<meta property="og:url" content="https://blog.jubeat.net/chinese-mirror-guide/index.html">
+<meta property="og:site_name" content="PM Extra&#39;s Blog">
+<meta property="og:description" content="本文旨在分享中国网络环境下，开发运维的镜像加速最佳实践。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-01-02T12:08:37.000Z">
+<meta property="article:modified_time" content="2021-01-02T12:08:37.000Z">
+<meta property="article:author" content="PM Extra">
+<meta property="article:tag" content="Network">
+<meta property="article:tag" content="网络">
+<meta property="article:tag" content="DevOps">
+<meta property="article:tag" content="运维">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://blog.jubeat.net/chinese-mirror-guide/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+
+
+  <title>中国镜像加速指南 | PM Extra's Blog</title>
+  
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?243dcd0c69db776189a1d1b3be85b480";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">PM Extra's Blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">PM的博客</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="tags fa-fw"></i>标签</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://blog.jubeat.net/chinese-mirror-guide/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="PM Extra">
+      <meta itemprop="description" content="我叫PM，一只任性偏执的码农">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="PM Extra's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          中国镜像加速指南
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-01-02 20:08:37" itemprop="dateCreated datePublished" datetime="2021-01-02T20:08:37+08:00">2021-01-02</time>
+            </span>
+
+          
+            <span id="/chinese-mirror-guide/" class="post-meta-item leancloud_visitors" data-flag-title="中国镜像加速指南" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/chinese-mirror-guide/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/chinese-mirror-guide/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>本文旨在分享中国网络环境下，开发运维的镜像加速最佳实践。</p>
+<span id="more"></span>
+
+<h1 id="为什么使用镜像加速服务"><a href="#为什么使用镜像加速服务" class="headerlink" title="为什么使用镜像加速服务"></a>为什么使用镜像加速服务</h1><p>由于大部分软件仓库/代码源位于境外服务器，从国内直连可能不稳定或访问缓慢。<br>因此，一些第三方在国内搭建了镜像站，把境外的软件仓库/代码源同步到国内服务器，进行二次分发。<br>这些镜像站，大多数是出于公益目的，免费开放给公众使用，为国内开发和运维工作者提供便利。</p>
+<h2 id="如何确保镜像服务安全可靠"><a href="#如何确保镜像服务安全可靠" class="headerlink" title="如何确保镜像服务安全可靠"></a>如何确保镜像服务安全可靠</h2><p>既然镜像站提供的是二次分发，那么就必然面临一个拷问：我怎么确保我使用的镜像服务和官方提供的内容是一致的呢？<br>这里从几个角度讨论：</p>
+<h3 id="同步时效"><a href="#同步时效" class="headerlink" title="同步时效"></a>同步时效</h3><p>镜像站并非实时保证内容和官方相同，而是定期和官方同步检查更新。这个定期周期一般是几个小时至几天同步一次，偶尔也有可能遇到同步失败的情况。<br>当镜像服务和官方不同步时，你可能无法下载到最新的数据。<br>通常，你可以在各个镜像站的首页，看到各个仓库/源的同步状态。</p>
+<h3 id="数据损坏或恶意篡改"><a href="#数据损坏或恶意篡改" class="headerlink" title="数据损坏或恶意篡改"></a>数据损坏或恶意篡改</h3><p>万一镜像站同步到的数据是损坏的、错误的，或者人为恶意篡改了数据，分发恶意代码、软件怎么办呢？<br>大多数情况下，包管理工具都有哈希或者签名校验机制，错误损坏的数据会被客户端的管理工具发现并拒绝。<br>而刻意分发的恶意代码则相对较难防范，因此请尽量选择背景可靠的镜像站。</p>
+<h3 id="中间人攻击"><a href="#中间人攻击" class="headerlink" title="中间人攻击"></a>中间人攻击</h3><p>中间人攻击主要针对 HTTP 协议。目前绝大多数镜像站都支持 HTTP / HTTPS 两种协议访问。<br>在公网环境下，应当尽量使用 HTTPS 协议保障传输的安全性。而在公有云使用内网镜像服务时，则建议使用 HTTP 访问以减少 SSL 加解密的开销并提升缓存效率。</p>
+<h1 id="国内主流的镜像站"><a href="#国内主流的镜像站" class="headerlink" title="国内主流的镜像站"></a>国内主流的镜像站</h1><h2 id="阿里巴巴开源镜像站-淘宝NPM镜像"><a href="#阿里巴巴开源镜像站-淘宝NPM镜像" class="headerlink" title="阿里巴巴开源镜像站 / 淘宝NPM镜像"></a>阿里巴巴开源镜像站 / 淘宝NPM镜像</h2><blockquote>
+<p><a target="_blank" rel="noopener" href="https://developer.aliyun.com/mirror/">https://developer.aliyun.com/mirror/</a><br><del><a target="_blank" rel="noopener" href="https://npm.taobao.org/">https://npm.taobao.org</a></del> (已合并至阿里巴巴开源镜像站)</p>
+</blockquote>
+<p>由阿里巴巴提供的开源镜像站，包含主流的开源软件，虽然数量不多，但是稳定性一流。除此之外还包含 Node 生态的 npm / electron / PhantomJS / node-sass 等镜像，这是大多数镜像站没有的。</p>
+<h3 id="阿里云-Docker-Hub-镜像加速服务"><a href="#阿里云-Docker-Hub-镜像加速服务" class="headerlink" title="阿里云 Docker Hub 镜像加速服务"></a>阿里云 Docker Hub 镜像加速服务</h3><p>除了以上开源镜像，阿里云还提供了 Docker Hub 的镜像加速服务，按照阿里云文档，该服务需要登录阿里云账号，在镜像服务控制台获取每个用户专属的加速地址。<a target="_blank" rel="noopener" href="https://cr.console.aliyun.com/_/instances/mirrors">点击此处</a> 登录后即可获取，该服务完全免费，请放心使用。</p>
+<p>阿里云之所以设定需要每个用户获取专属的加速地址，应该是为了统计每个用户的使用量，防止通过 Docker Hub 镜像加速服务对阿里云进行攻击，毕竟 Docker 镜像的体积都不小，对服务器和带宽造成的负担也不低。<br>因此，尽量不要使用网上泄漏的个人加速地址，谁知道会不会用的人多了就被阿里云 ban (拉黑) 了呢。</p>
+<p>不过这里有一件有意思的事情，曾经中科大 USTCLUG 也提供过 Docker Hub 镜像加速服务，但是后来因为服务器不堪重负，取消了这一服务。而后中科大的 <code>docker.mirrors.ustc.edu.cn</code> 就被重定向到了 <code>ustc-edu-cn.mirror.aliyuncs.com</code> ，看起来应该是和阿里云达成了某种合作。因此，懒得登录账号申请专属地址的朋友，可以考虑使用 <code>https://ustc-edu-cn.mirror.aliyuncs.com/</code> 这一地址。</p>
+<h2 id="网易开源镜像站"><a href="#网易开源镜像站" class="headerlink" title="网易开源镜像站"></a>网易开源镜像站</h2><blockquote>
+<p><a target="_blank" rel="noopener" href="https://mirrors.163.com/">https://mirrors.163.com/</a></p>
+</blockquote>
+<p>网易提供的开源镜像站，包含主流的开源软件，中规中矩。</p>
+<h3 id="网易-Docker-Hub-镜像加速服务"><a href="#网易-Docker-Hub-镜像加速服务" class="headerlink" title="网易 Docker Hub 镜像加速服务"></a>网易 Docker Hub 镜像加速服务</h3><p><code>https://hub-mirror.c.163.com</code></p>
+<h2 id="清华TUNA-北外"><a href="#清华TUNA-北外" class="headerlink" title="清华TUNA / 北外"></a>清华TUNA / 北外</h2><blockquote>
+<p><a target="_blank" rel="noopener" href="https://mirrors.tuna.tsinghua.edu.cn/">https://mirrors.tuna.tsinghua.edu.cn/</a><br><a target="_blank" rel="noopener" href="https://mirrors.bfsu.edu.cn/">https://mirrors.bfsu.edu.cn/</a></p>
+</blockquote>
+<p>由清华大学 TUNA 协会维护的开源镜像站，北外提供分流。提供的内容还是很丰富的，同步也非常及时。</p>
+<h2 id="中科大-USTCLUG"><a href="#中科大-USTCLUG" class="headerlink" title="中科大 USTCLUG"></a>中科大 USTCLUG</h2><blockquote>
+<p><a target="_blank" rel="noopener" href="https://mirrors.ustc.edu.cn/">https://mirrors.ustc.edu.cn/</a></p>
+</blockquote>
+<p>由中国科技大学 Linux 用户协会维护的开源镜像站，提供主流开源软件的分发，提供的内容比阿里云和网易的更丰富，但是同步频率和稳定性略差一些。</p>
+<h2 id="Gitee-极速下载-GitHub-主流仓库镜像"><a href="#Gitee-极速下载-GitHub-主流仓库镜像" class="headerlink" title="Gitee 极速下载 (GitHub 主流仓库镜像)"></a>Gitee 极速下载 (GitHub 主流仓库镜像)</h2><blockquote>
+<p><a target="_blank" rel="noopener" href="https://gitee.com/mirrors">https://gitee.com/mirrors</a></p>
+</blockquote>
+<p>由商业公司 OSChina 提供的 GitHub 镜像站，与其它镜像站不同，这里并不提供 Linux 发行版或者主流软件等镜像。这里只提供 GitHub 上部分项目的镜像。截止 2020 年末，这里已经有 2 万多个主流项目的镜像。</p>
+<h2 id="其它"><a href="#其它" class="headerlink" title="其它"></a>其它</h2><p>除了上面这些开放的镜像站，还有一些仅提供内网服务的镜像站，如腾讯云、华为云、Azure中国等，都有自己的镜像加速服务，只面向自己的公有云环境提供服务，可以根据自己的实际需要选用。</p>
+<h1 id="未完待续"><a href="#未完待续" class="headerlink" title="未完待续"></a>未完待续</h1><p>其实本来写这篇文章是想评测一下各大镜像站的优缺点，以及在 CI 等场景下的使用技巧。然而这篇文章从年初拖到年末，挖了一年的坑也没填。因此把之前写的一部分先发了，剩下的内容后面再看情况不定期更新。</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Network/" rel="tag"># Network</a>
+              <a href="/tags/%E7%BD%91%E7%BB%9C/" rel="tag"># 网络</a>
+              <a href="/tags/DevOps/" rel="tag"># DevOps</a>
+              <a href="/tags/%E8%BF%90%E7%BB%B4/" rel="tag"># 运维</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/how-to-install-multi-xcode/" rel="prev" title="如何在mac中安装多个版本的Xcode">
+      <i class="fa fa-chevron-left"></i> 如何在mac中安装多个版本的Xcode
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E4%BD%BF%E7%94%A8%E9%95%9C%E5%83%8F%E5%8A%A0%E9%80%9F%E6%9C%8D%E5%8A%A1"><span class="nav-number">1.</span> <span class="nav-text">为什么使用镜像加速服务</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E7%A1%AE%E4%BF%9D%E9%95%9C%E5%83%8F%E6%9C%8D%E5%8A%A1%E5%AE%89%E5%85%A8%E5%8F%AF%E9%9D%A0"><span class="nav-number">1.1.</span> <span class="nav-text">如何确保镜像服务安全可靠</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%90%8C%E6%AD%A5%E6%97%B6%E6%95%88"><span class="nav-number">1.1.1.</span> <span class="nav-text">同步时效</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E6%8D%9F%E5%9D%8F%E6%88%96%E6%81%B6%E6%84%8F%E7%AF%A1%E6%94%B9"><span class="nav-number">1.1.2.</span> <span class="nav-text">数据损坏或恶意篡改</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%AD%E9%97%B4%E4%BA%BA%E6%94%BB%E5%87%BB"><span class="nav-number">1.1.3.</span> <span class="nav-text">中间人攻击</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9B%BD%E5%86%85%E4%B8%BB%E6%B5%81%E7%9A%84%E9%95%9C%E5%83%8F%E7%AB%99"><span class="nav-number">2.</span> <span class="nav-text">国内主流的镜像站</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%98%BF%E9%87%8C%E5%B7%B4%E5%B7%B4%E5%BC%80%E6%BA%90%E9%95%9C%E5%83%8F%E7%AB%99-%E6%B7%98%E5%AE%9DNPM%E9%95%9C%E5%83%8F"><span class="nav-number">2.1.</span> <span class="nav-text">阿里巴巴开源镜像站 &#x2F; 淘宝NPM镜像</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%98%BF%E9%87%8C%E4%BA%91-Docker-Hub-%E9%95%9C%E5%83%8F%E5%8A%A0%E9%80%9F%E6%9C%8D%E5%8A%A1"><span class="nav-number">2.1.1.</span> <span class="nav-text">阿里云 Docker Hub 镜像加速服务</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BD%91%E6%98%93%E5%BC%80%E6%BA%90%E9%95%9C%E5%83%8F%E7%AB%99"><span class="nav-number">2.2.</span> <span class="nav-text">网易开源镜像站</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BD%91%E6%98%93-Docker-Hub-%E9%95%9C%E5%83%8F%E5%8A%A0%E9%80%9F%E6%9C%8D%E5%8A%A1"><span class="nav-number">2.2.1.</span> <span class="nav-text">网易 Docker Hub 镜像加速服务</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B8%85%E5%8D%8ETUNA-%E5%8C%97%E5%A4%96"><span class="nav-number">2.3.</span> <span class="nav-text">清华TUNA &#x2F; 北外</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%AD%E7%A7%91%E5%A4%A7-USTCLUG"><span class="nav-number">2.4.</span> <span class="nav-text">中科大 USTCLUG</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Gitee-%E6%9E%81%E9%80%9F%E4%B8%8B%E8%BD%BD-GitHub-%E4%B8%BB%E6%B5%81%E4%BB%93%E5%BA%93%E9%95%9C%E5%83%8F"><span class="nav-number">2.5.</span> <span class="nav-text">Gitee 极速下载 (GitHub 主流仓库镜像)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B6%E5%AE%83"><span class="nav-number">2.6.</span> <span class="nav-text">其它</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%9C%AA%E5%AE%8C%E5%BE%85%E7%BB%AD"><span class="nav-number">3.</span> <span class="nav-text">未完待续</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="PM Extra"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">PM Extra</p>
+  <div class="site-description" itemprop="description">我叫PM，一只任性偏执的码农</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">7</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/PMExtra" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;PMExtra" rel="noopener" target="_blank"><i class="github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:pm@jubeat.net" title="E-Mail → mailto:pm@jubeat.net" rel="noopener" target="_blank"><i class="envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://weibo.com/znxxs" title="Weibo → https:&#x2F;&#x2F;weibo.com&#x2F;znxxs" rel="noopener" target="_blank"><i class="weibo fa-fw"></i>Weibo</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://stackoverflow.com/users/6401252/pm-extra" title="StackOverflow → https:&#x2F;&#x2F;stackoverflow.com&#x2F;users&#x2F;6401252&#x2F;pm-extra" rel="noopener" target="_blank"><i class="stack-overflow fa-fw"></i>StackOverflow</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2015 – 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">PM Extra</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://mist.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : false,
+      notify     : false,
+      appId      : 't7VffyblUE3JC10NmU1YrCar-MdYXbMMI',
+      appKey     : 'h6MgC8PAeeE9GxNTtHFnWSM9',
+      placeholder: "说点什么吧（留下昵称和邮箱，可收到回复提醒哦）",
+      avatar     : 'mm',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : true,
+      lang       : '' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : true,
+      serverURLs : ''
+    });
+  }, window.Valine);
+});
+</script>
+
+</body>
+</html>
